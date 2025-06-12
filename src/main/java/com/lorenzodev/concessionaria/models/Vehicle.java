@@ -27,13 +27,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_vehicles")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @Builder
+@Table(name = "tb_vehicles")
 public class Vehicle {
 
     @Id

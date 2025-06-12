@@ -1,4 +1,4 @@
-package com.lorenzodev.concessionaria.models;
+package com.lorenzodev.concessionaria.models.enums;
 
 public enum UserRole {
     ADMIN,
