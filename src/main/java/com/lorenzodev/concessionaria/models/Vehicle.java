@@ -9,11 +9,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -33,7 +35,11 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = "id")
 @Builder
-@Table(name = "tb_vehicles")
+@Table(name = "tb_vehicles", indexes = {
+    @Index(name = "idx_vehicle_brand_model", columnList = "brand,model"),
+    @Index(name = "idx_vehicle_price", columnList = "price"),
+    @Index(name = "idx_vehicle_is_available", columnList = "is_available")
+})
 public class Vehicle {
 
     @Id
@@ -76,6 +82,7 @@ public class Vehicle {
     private String transmission;
 
     @Column(name = "mileage")
+    @Positive(message = "A quilometragem deve ser maior que zero")
     private Integer mileage;
 
     @Column(name = "description", length = 1000)
@@ -95,6 +102,8 @@ public class Vehicle {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Version
+    private Long version;
 
     @PrePersist
     protected void onCreate() {

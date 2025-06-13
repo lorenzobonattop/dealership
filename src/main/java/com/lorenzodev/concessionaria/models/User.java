@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.lorenzodev.concessionaria.models.enums.UserRole;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -54,7 +56,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private UserRole role;
+    @Builder.Default
+    private UserRole role = UserRole.USER;
 
     @NotBlank(message = "O telefone é obrigatório")
     @Pattern(regexp = "^\\+?[1-9][0-9]{10,14}$", message = "Formato de telefone inválido")
@@ -62,7 +65,8 @@ public class User {
     private String phone;
 
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
+    @Builder.Default
+    private Boolean isActive = true;
 
     @OneToMany(mappedBy = "createdBy")
     private List<Vehicle> vehicles;
