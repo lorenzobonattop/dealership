@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VehicleDTO {
     private UUID id;
-
     private String name;
     private String brand;
     private String model;

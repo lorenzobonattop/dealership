@@ -57,7 +57,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     @Builder.Default
-    private UserRole role = UserRole.USER;
+    private UserRole role = UserRole.CUSTOMER;
 
     @NotBlank(message = "O telefone é obrigatório")
     @Pattern(regexp = "^\\+?[1-9][0-9]{10,14}$", message = "Formato de telefone inválido")

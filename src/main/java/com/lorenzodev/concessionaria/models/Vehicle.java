@@ -3,6 +3,8 @@ package com.lorenzodev.concessionaria.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.lorenzodev.concessionaria.models.enums.Fuel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -75,7 +77,7 @@ public class Vehicle {
 
     @NotBlank(message = "O tipo de combustível é obrigatório")
     @Column(name = "fuel", nullable = false)
-    private String fuel;
+    private Fuel fuel;
 
     @NotBlank(message = "A transmissão é obrigatória")
     @Column(name = "transmission", nullable = false)
