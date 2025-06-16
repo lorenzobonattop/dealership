@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lorenzodev.concessionaria.dto.SaleDTO;
 import com.lorenzodev.concessionaria.services.SaleService;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
 public class SaleController {
     private final SaleService saleService;
+
+    public SaleController(SaleService saleService) {
+        this.saleService = saleService;
+    }
 
     @PostMapping("/sales")
     public ResponseEntity<SaleDTO> createSale(@RequestBody SaleDTO saleDTO) {

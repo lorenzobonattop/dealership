@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lorenzodev.concessionaria.dto.VehicleDTO;
 import com.lorenzodev.concessionaria.services.VehicleService;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
 public class VehicleController {
     private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
     @PostMapping("/vehicles")
     public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
